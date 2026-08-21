@@ -171,14 +171,10 @@ Sample values known to predict **Rice** with high confidence (from the training 
 |---|---|---|---|---|---|---|
 | 80 | 48 | 40 | 24°C | 82% | 6.4 | 236 mm |
 
-> ⚠️ The trained dataset covers 22 crops (rice, maize, chickpea, kidney beans, pigeon peas, moth beans, mung bean, black gram, lentil, pomegranate, banana, mango, grapes, watermelon, muskmelon, apple, orange, papaya, coconut, cotton, jute, coffee). **Wheat is not included** — the model cannot recommend it until retrained with wheat samples.
-
+> ⚠️ The trained dataset covers 22 crops (rice, maize, chickpea, kidney beans, pigeon peas, moth beans, mung bean, black gram, lentil, pomegranate, banana, mango, grapes, watermelon, muskmelon, apple, orange, papaya, coconut, cotton, jute, coffee).
 ---
 
 ## ⚠️ Known Limitations
-
-- **Disease Prediction tab** is UI-only — not yet wired to a model. Requires an image-classification model (e.g. a CNN trained on leaf images), which is a separate effort from the tabular crop-recommendation model.
-- Hero image (`tractor1.jpg`) is not bundled — add your own image with that filename in `frontend/` or update the `<img src>` in `index.html`.
 - Google Translate widget requires an internet connection (loads from `translate.google.com`).
 
 ---
