@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard — AgriMitra</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#0d1f13">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand"><a href="index.html">AgriMitra</a></div>
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#tools" class="nav-link">Tools</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+        <button id="logout-btn" class="nav-link nav-cta" style="border:none;">Logout</button>
+      </nav>
+      <div class="utility-controls">
+        <div id="google_translate_element"></div>
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle light/dark theme">☀️</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="dashboard-section" id="dashboard-root">
+
+      <!-- Header -->
+      <div class="dashboard-header">
+        <div class="dashboard-header-title">
+          <div class="section-label">Farm Overview</div>
+          <h2>Farmer Dashboard</h2>
+          <p>Your live profile, fields and recommendation history</p>
+        </div>
+        <div class="dashboard-header-actions">
+          <a href="index.html#tools" class="btn sm ghost">+ New Analysis</a>
+          <button class="btn sm secondary" onclick="window.print()">⬇ Export</button>
+        </div>
+      </div>
+
+      <!-- KPI Row -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Fields</div>
+          <div class="kpi-value" id="kpi-total-fields">-</div>
+          <div class="kpi-sub">Registered at signup</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total Land</div>
+          <div class="kpi-value" id="kpi-total-land">-</div>
+          <div class="kpi-sub">Across all fields</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Recommendations Run</div>
+          <div class="kpi-value" id="kpi-recommendations">-</div>
+          <div class="kpi-sub">All time</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Active Crop</div>
+          <div class="kpi-value" id="kpi-active-crop" style="font-size:1.1rem;">-</div>
+          <div class="kpi-sub">Most recently selected</div>
+        </div>
+      </div>
+
+      <!-- Main Grid -->
+      <div class="dash-grid">
+
+        <!-- Farmer Profile -->
+        <div class="dash-card" id="profile-card">
+          <div class="dash-card-header">
+            <h3>Farmer Profile</h3>
+            <button class="btn sm ghost" onclick="openEditModal()">✏️ Edit</button>
+          </div>
+          <div class="farmer-avatar">👨‍🌾</div>
+          <div class="farmer-name" id="disp-name">-</div>
+          <div class="farmer-location" id="disp-location">-</div>
+          <div class="farmer-details">
+            <div class="farmer-detail-row">
+              <span class="farmer-detail-label">Land Area</span>
+              <span class="farmer-detail-value" id="disp-land">-</span>
+            </div>
+            <div class="farmer-detail-row">
+              <span class="farmer-detail-label">Soil Type</span>
+              <span class="farmer-detail-value" id="disp-soil">-</span>
+            </div>
+            <div class="farmer-detail-row">
+              <span class="farmer-detail-label">Soil pH</span>
+              <span class="farmer-detail-value" id="disp-ph">-</span>
+            </div>
+            <div class="farmer-detail-row">
+              <span class="farmer-detail-label">Irrigation</span>
+              <span class="farmer-detail-value" id="disp-irrigation">-</span>
+            </div>
+            <div class="farmer-detail-row">
+              <span class="farmer-detail-label">Phone</span>
+              <span class="farmer-detail-value" id="disp-phone">-</span>
+            </div>
+            <div class="farmer-detail-row">
+              <span class="farmer-detail-label">Member Since</span>
+              <span class="farmer-detail-value" id="disp-since">-</span>
+            </div>
+          </div>
+          <div id="save-toast" style="display:none;margin-top:14px;padding:10px 14px;background:var(--accent-soft);border:1px solid var(--border);border-radius:8px;color:var(--accent);font-size:.83rem;font-weight:600;text-align:center;">✓ Profile saved successfully</div>
+        </div>
+
+        <!-- Current Crop + My Fields -->
+        <div style="display:grid;gap:18px;">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h3>Current Selected Crop</h3>
+              <span class="badge">Latest</span>
+            </div>
+            <div class="crop-display" id="current-crop-display">
+              <p style="font-size:.85rem;">Loading...</p>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h3>My Fields</h3>
+              <span class="badge" id="fields-count-badge">-</span>
+            </div>
+            <div class="fields-list" id="fields-list">
+              <p style="font-size:.85rem;">Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recommendation History -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h3>Recommendation History</h3>
+            <span class="badge">Last 10</span>
+          </div>
+          <div class="history-list" id="history-list">
+            <p style="font-size:.85rem;">Loading...</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-bottom" style="border-top:none;padding-top:0;">
+        <p>© 2026 AgriMitra. Smart decisions. Better harvests.</p>
+        <div style="display:flex;gap:16px;">
+          <a href="index.html" style="color:var(--text-dim);font-size:.82rem;text-decoration:none;">Home</a>
+          <a href="about.html" style="color:var(--text-dim);font-size:.82rem;text-decoration:none;">About</a>
+          <a href="index.html#contact" style="color:var(--text-dim);font-size:.82rem;text-decoration:none;">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── EDIT PROFILE MODAL ── -->
+  <div id="edit-modal" class="modal-backdrop" style="display:none;" aria-modal="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="section-label" style="margin-bottom:4px;">Farmer Profile</div>
+          <h2 id="modal-title" style="font-size:1.5rem;margin:0;">Edit Details</h2>
+        </div>
+        <button onclick="closeEditModal()" class="btn sm ghost" aria-label="Close">✕</button>
+      </div>
+
+      <div>
+        <div style="font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;">Profile Avatar</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;" id="avatar-picker">
+          <button class="avatar-opt" data-val="👨‍🌾" onclick="selectAvatar(this)" style="font-size:1.8rem;padding:8px 12px;border-radius:10px;border:2px solid var(--accent);background:var(--accent-soft);cursor:pointer;">👨‍🌾</button>
+          <button class="avatar-opt" data-val="👩‍🌾" onclick="selectAvatar(this)" style="font-size:1.8rem;padding:8px 12px;border-radius:10px;border:2px solid transparent;background:var(--bg2);cursor:pointer;">👩‍🌾</button>
+          <button class="avatar-opt" data-val="🧑‍🌾" onclick="selectAvatar(this)" style="font-size:1.8rem;padding:8px 12px;border-radius:10px;border:2px solid transparent;background:var(--bg2);cursor:pointer;">🧑‍🌾</button>
+          <button class="avatar-opt" data-val="👴" onclick="selectAvatar(this)" style="font-size:1.8rem;padding:8px 12px;border-radius:10px;border:2px solid transparent;background:var(--bg2);cursor:pointer;">👴</button>
+          <button class="avatar-opt" data-val="👵" onclick="selectAvatar(this)" style="font-size:1.8rem;padding:8px 12px;border-radius:10px;border:2px solid transparent;background:var(--bg2);cursor:pointer;">👵</button>
+        </div>
+      </div>
+
+      <div style="display:grid;gap:14px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-field">
+            <label for="ed-name">Full Name</label>
+            <input type="text" id="ed-name" placeholder="e.g. Ramesh Kumar">
+          </div>
+          <div class="form-field">
+            <label for="ed-phone">Phone Number</label>
+            <input type="tel" id="ed-phone" placeholder="e.g. +91 98765 43210">
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-field">
+            <label for="ed-village">Village / Town</label>
+            <input type="text" id="ed-village" placeholder="e.g. Nashik">
+          </div>
+          <div class="form-field">
+            <label for="ed-district">District</label>
+            <input type="text" id="ed-district" placeholder="e.g. Nashik">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="ed-state">State</label>
+          <select id="ed-state">
+            <option value="">Select State</option>
+            <option>Maharashtra</option><option>Punjab</option><option>Haryana</option>
+            <option>Uttar Pradesh</option><option>Madhya Pradesh</option><option>Rajasthan</option>
+            <option>Gujarat</option><option>Karnataka</option><option>Tamil Nadu</option>
+            <option>Andhra Pradesh</option><option>Telangana</option><option>Kerala</option>
+            <option>Bihar</option><option>West Bengal</option><option>Odisha</option>
+            <option>Chhattisgarh</option><option>Jharkhand</option><option>Uttarakhand</option>
+            <option>Himachal Pradesh</option><option>Other</option>
+          </select>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-field">
+            <label for="ed-ph">Soil pH</label>
+            <input type="number" id="ed-ph" min="0" max="14" step="0.1" placeholder="e.g. 6.8">
+          </div>
+          <div class="form-field">
+            <label for="ed-soil">Soil Type</label>
+            <select id="ed-soil">
+              <option>Black Cotton</option><option>Red Laterite</option>
+              <option>Loam</option><option>Clay</option>
+              <option>Sandy</option><option>Silty</option><option>Alluvial</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="ed-irrigation">Irrigation Type</label>
+          <select id="ed-irrigation">
+            <option>Drip</option><option>Sprinkler</option>
+            <option>Flood / Furrow</option><option>Rainfed</option><option>Canal</option>
+          </select>
+        </div>
+
+        <div id="modal-error" style="display:none;padding:10px 14px;background:rgba(224,92,92,.1);border:1px solid rgba(224,92,92,.25);border-radius:8px;color:var(--danger);font-size:.83rem;"></div>
+
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:4px;">
+          <button onclick="closeEditModal()" class="btn ghost">Cancel</button>
+          <button onclick="saveProfile()" class="btn primary">Save Changes ✓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

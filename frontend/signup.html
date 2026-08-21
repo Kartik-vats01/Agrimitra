@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sign Up — AgriMitra</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#0d1f13">
+</head>
+<body>
+  <div class="utility-controls" style="position:fixed;top:18px;right:20px;z-index:20;">
+    <div id="google_translate_element"></div>
+    <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle light/dark theme">☀️</button>
+  </div>
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-brand"><a href="index.html">AgriMitra</a></div>
+      <h1>Create your account</h1>
+      <p class="auth-sub">Fill in your farm details — this info will be used for your dashboard and crop recommendations.</p>
+
+      <div id="auth-error" class="auth-error"></div>
+
+      <form id="signup-form" class="auth-form">
+        <div class="form-row-2">
+          <div class="form-field">
+            <label for="su-name">Full Name</label>
+            <input type="text" id="su-name" required placeholder="Ramesh Kumar">
+          </div>
+          <div class="form-field">
+            <label for="su-phone">Phone</label>
+            <input type="tel" id="su-phone" placeholder="98xxxxxxxx">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="su-email">Email</label>
+          <input type="email" id="su-email" required placeholder="ramesh@example.com">
+        </div>
+
+        <div class="form-field">
+          <label for="su-password">Password</label>
+          <input type="password" id="su-password" required minlength="6" placeholder="Min 6 characters">
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-field">
+            <label for="su-village">Village</label>
+            <input type="text" id="su-village" placeholder="e.g. Pusa">
+          </div>
+          <div class="form-field">
+            <label for="su-district">District</label>
+            <input type="text" id="su-district" placeholder="e.g. Rewari">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="su-state">State</label>
+          <input type="text" id="su-state" placeholder="e.g. Haryana">
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-field">
+            <label for="su-soil-type">Soil Type</label>
+            <select id="su-soil-type">
+              <option value="Loam">Loam</option>
+              <option value="Clay">Clay</option>
+              <option value="Sandy">Sandy</option>
+              <option value="Silty">Silty</option>
+              <option value="Black Cotton">Black Cotton</option>
+              <option value="Red Laterite">Red Laterite</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="su-soil-ph">Soil pH</label>
+            <input type="number" id="su-soil-ph" step="0.1" min="0" max="14" placeholder="6.5">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="su-irrigation">Irrigation Type</label>
+          <select id="su-irrigation">
+            <option value="Rainfed">Rainfed</option>
+            <option value="Canal">Canal</option>
+            <option value="Borewell">Borewell / Tube well</option>
+            <option value="Drip">Drip Irrigation</option>
+            <option value="Sprinkler">Sprinkler</option>
+          </select>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-field">
+            <label for="su-total-fields">Total Number of Fields *</label>
+            <input type="number" id="su-total-fields" min="1" required placeholder="e.g. 3">
+          </div>
+          <div class="form-field">
+            <label for="su-total-land">Total Land (Acres)</label>
+            <input type="number" id="su-total-land" min="0" step="0.1" placeholder="e.g. 12">
+          </div>
+        </div>
+        <p class="fields-hint">⚠️ This field count will be validated later when you select a crop — you won't be able to select more fields than you set here, so please double-check before submitting.</p>
+
+        <button type="submit" class="btn primary" style="width:100%;justify-content:center;margin-top:6px;">Create Account →</button>
+      </form>
+
+      <div class="auth-switch">Already have an account? <a href="login.html">Login</a></div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

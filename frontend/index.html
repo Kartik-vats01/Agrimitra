@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AgriMitra — Smart Crop Recommendation & Disease Prediction</title>
+  <meta name="description" content="AgriMitra — AI-powered assistant for crop recommendation and disease prediction.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#0d1f13">
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <div class="brand"><a href="index.html">AgriMitra</a></div>
+      <nav class="main-nav" id="main-nav">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#tools" class="nav-link">Tools</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link nav-cta">Dashboard</a>
+      </nav>
+      <div class="utility-controls">
+        <div id="google_translate_element"></div>
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle light/dark theme">☀️</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-image">
+        <img src="/frontend/images/tractor1.jpg" alt="Indian farmer in field">
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">AI-Powered Agriculture</div>
+        <h1>Smart Farming Starts with <em>Better Decisions</em></h1>
+        <p class="hero-desc">AgriMitra uses Machine Learning to help farmers choose the right crops, detect diseases early, and maximise yield with data-driven insights.</p>
+        <div class="hero-actions">
+          <a href="dashboard.html" class="btn primary">Go to Dashboard →</a>
+          <a href="#tools" class="btn ghost">Try the Tools</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">95%</div>
+            <div class="hero-stat-label">Recommendation Accuracy</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">12K+</div>
+            <div class="hero-stat-label">Farmers Assisted</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">30+</div>
+            <div class="hero-stat-label">Crops Supported</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-section">
+      <div class="feat-row">
+        <div>
+          <div class="section-label">Why AgriMitra</div>
+          <h2 class="section-title">Intelligence Built for the Indian Farmer</h2>
+          <p class="section-desc">We combine soil science, climate data, and machine learning to put expert agricultural knowledge in every farmer's hands.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🌱</div>
+            <h3>Crop Recommendation</h3>
+            <p>Get personalised crop suggestions based on your soil nutrients, pH, humidity, rainfall and temperature data.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔬</div>
+            <h3>Disease Detection</h3>
+            <p>Upload a leaf photo and our vision model identifies diseases with remedies and prevention steps instantly.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Yield Forecasting</h3>
+            <p>Understand expected yield per acre for recommended crops so you can plan storage and sales in advance.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌦️</div>
+            <h3>Weather Insights</h3>
+            <p>7-day micro-climate forecasts tailored to your district to inform irrigation and pest-control decisions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section class="tools-section" id="tools">
+      <div class="tools-inner">
+        <div class="tools-header">
+          <div class="section-label">AI Tools</div>
+          <h2 class="section-title">Crop & Disease Analysis</h2>
+          <p class="section-desc">Enter your field parameters or upload a leaf image to get instant AI-powered recommendations.</p>
+        </div>
+
+        <div class="tabs-wrapper">
+          <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="crop">🌾 Crop Recommendation</button>
+          </div>
+
+          <div class="tab-content active" id="crop">
+            <form id="crop-form">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="nitrogen">Nitrogen (N)</label>
+                  <input type="number" id="nitrogen" min="0" step="0.1" placeholder="e.g. 40">
+                </div>
+                <div class="form-field">
+                  <label for="phosphorus">Phosphorus (P)</label>
+                  <input type="number" id="phosphorus" min="0" step="0.1" placeholder="e.g. 35">
+                </div>
+                <div class="form-field">
+                  <label for="potassium">Potassium (K)</label>
+                  <input type="number" id="potassium" min="0" step="0.1" placeholder="e.g. 20">
+                </div>
+                <div class="form-field">
+                  <label for="ph">Soil pH</label>
+                  <input type="number" id="ph" min="0" max="14" step="0.1" placeholder="e.g. 6.5">
+                </div>
+                <div class="form-field">
+                  <label for="land">Land Area (Acres)</label>
+                  <input type="number" id="land" min="0" step="0.1" placeholder="e.g. 12">
+                </div>
+                <div class="form-field">
+                  <label for="soil">Soil Type</label>
+                  <select id="soil">
+                    <option value="loam">Loam</option>
+                    <option value="clay">Clay</option>
+                    <option value="sandy">Sandy</option>
+                    <option value="silty">Silty</option>
+                    <option value="black">Black Cotton</option>
+                    <option value="red">Red Laterite</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="humidity">Humidity (%)</label>
+                  <input type="number" id="humidity" min="0" max="100" step="0.1" placeholder="e.g. 70">
+                </div>
+                <div class="form-field">
+                  <label for="rainfall">Rainfall (mm)</label>
+                  <input type="number" id="rainfall" min="0" step="0.1" placeholder="e.g. 120">
+                </div>
+                <div class="form-field">
+                  <label for="temperature">Temperature (°C)</label>
+                  <input type="number" id="temperature" step="0.1" placeholder="e.g. 28">
+                </div>
+              </div>
+              <div class="form-actions" style="margin-top:20px;">
+                <button type="button" id="get-recommendation" class="btn primary">Get Recommendation →</button>
+              </div>
+            </form>
+            <div id="recommendation-output" class="result-area"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="section-label">Get in Touch</div>
+        <h2 class="section-title">We'd Love to Hear From You</h2>
+        <p class="section-desc">Have questions or want to partner with AgriMitra? Reach out — our agronomists are ready to help.</p>
+        <div class="contact-info-items">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📍</div>
+            <div class="contact-info-text">
+              <strong>Office</strong>
+              <span>ICAR Campus, Pusa, New Delhi — 110 012</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📧</div>
+            <div class="contact-info-text">
+              <strong>Email</strong>
+              <span>support@agrimitra.in</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📞</div>
+            <div class="contact-info-text">
+              <strong>Helpline</strong>
+              <span>1800-xxx-xxxx (Toll Free, 9AM–6PM)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-card">
+        <form id="contact-form" class="contact-form">
+          <div class="contact-form-row">
+            <div class="form-field">
+              <label for="contact-name">Full Name</label>
+              <input type="text" id="contact-name" required placeholder="Ramesh Kumar">
+            </div>
+            <div class="form-field">
+              <label for="contact-email">Email</label>
+              <input type="email" id="contact-email" required placeholder="ramesh@example.com">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="contact-subject">Subject</label>
+            <input type="text" id="contact-subject" placeholder="e.g. Crop recommendation query">
+          </div>
+          <div class="form-field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" rows="4" required placeholder="Tell us how we can help..."></textarea>
+          </div>
+          <button type="submit" class="btn primary" style="width:100%;justify-content:center;">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-name">AgriMitra</div>
+          <p>AI-powered crop recommendation and disease detection for Indian farmers.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <div class="footer-links">
+            <a href="#tools">Crop Tool</a>
+            <a href="#tools">Disease Tool</a>
+            <a href="dashboard.html">Dashboard</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Blog</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 AgriMitra. Smart decisions. Better harvests.</p>
+        <div class="socials">
+          <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-link" aria-label="Facebook">f</a>
+          <a href="#" class="social-link" aria-label="Instagram">◎</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
