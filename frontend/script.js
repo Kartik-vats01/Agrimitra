@@ -2,7 +2,7 @@
    AgriMitra — shared frontend script
    =========================================================== */
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://agrimitra-api.onrender.com/";
 
 /* ---------- Theme (light/dark) ---------- */
 const Theme = {
