@@ -191,12 +191,7 @@ Sample values known to predict **Rice** with high confidence (from the training 
 
 ---
 
-## 📄 License
-
-For educational/personal project use. Update this section with your preferred license before publishing publicly.
+---
+**Author** - **Kartik Sharma**
 
 ---
-
-## 🙌 Credits
-
-Built by the AgriMitra team — combining agronomy expertise with machine learning to support Indian farmers.
